@@ -1,0 +1,8 @@
+# Godot 4+ specific ignores
+.godot/
+
+#socket server
+/py_socket_server/.idea
+/py_socket_server/.idea/*
+/py_socket_server/venv
+/py_socket_server/venv/*
