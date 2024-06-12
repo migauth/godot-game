@@ -1,0 +1,144 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnk7sjtyetl8x"]
+
+[ext_resource type="Script" path="res://assets/scripts/lobby/lobby_view.gd" id="1_clpmv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o7wn8"]
+
+[node name="LobbyUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_clpmv")
+
+[node name="Join" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="SessionInfo" type="Panel" parent="Join"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="SessionName" type="Label" parent="Join/SessionInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.035
+anchor_right = 0.666
+anchor_bottom = 0.07
+text = "Session name"
+label_settings = SubResource("LabelSettings_o7wn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Join/SessionInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.12
+anchor_right = 0.98
+anchor_bottom = 0.98
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SessionList" type="Panel" parent="Join"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Header" type="Label" parent="Join/SessionList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.035
+anchor_right = 0.666
+anchor_bottom = 0.07
+offset_bottom = 0.32
+text = "Session List"
+label_settings = SubResource("LabelSettings_o7wn8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Join/SessionList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.12
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Join/SessionList/ScrollContainer"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(550, 559)
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="Join/SessionList/ScrollContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Select" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1112.0
+offset_bottom = -608.0
+
+[node name="Panel" type="Panel" parent="Select"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.202
+offset_left = 192.0
+offset_top = 216.0
+offset_right = -192.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="Select/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 14.0
+offset_right = -11.0
+offset_bottom = -14.0801
+text = "Host"
+
+[node name="Join" type="Button" parent="Select/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 14.0
+offset_right = -11.0
+offset_bottom = -14.0801
+text = "Join"
+
+[connection signal="pressed" from="Select/Panel/Host" to="." method="show_host"]
+[connection signal="pressed" from="Select/Panel/Join" to="." method="show_join"]

@@ -25,7 +25,7 @@ func poll() -> void:
 			connection_closed.emit()
 
 	while socket.get_ready_state() == socket.STATE_OPEN and socket.get_available_packet_count():
-		message_received.emit(get_message())
+		message_received.emit(JSON.parse_string(get_message()) as Dictionary)
 
 
 func get_message() -> Variant:

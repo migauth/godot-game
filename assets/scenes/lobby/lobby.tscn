@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://jv76so4uuq7"]
+
+[ext_resource type="Script" path="res://assets/scripts/lobby/lobby_controller.gd" id="1_6chws"]
+[ext_resource type="Script" path="res://assets/scripts/lobby/WebSocketClient.gd" id="2_p2t3f"]
+[ext_resource type="PackedScene" uid="uid://bnk7sjtyetl8x" path="res://assets/scenes/lobby/lobby_ui.tscn" id="3_y4tde"]
+
+[node name="Lobby" type="Node"]
+script = ExtResource("1_6chws")
+force_local = true
+url = "34.19.80.253"
+port = 80
+ui_scene = ExtResource("3_y4tde")
+
+[node name="WebSocketClient" type="Node" parent="."]
+script = ExtResource("2_p2t3f")
+
+[node name="LobbyUI" parent="." instance=ExtResource("3_y4tde")]
+
+[node name="Join" parent="LobbyUI" index="0"]
+anchors_preset = 15
+grow_horizontal = 2
+
+[node name="ButtonRefresh" type="Button" parent="LobbyUI/Join/SessionList" index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.83
+anchor_top = 0.03
+anchor_right = 0.965
+anchor_bottom = 0.078
+grow_horizontal = 0
+text = "Refresh"
+
+[node name="Select" parent="LobbyUI" index="2"]
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_websocket_client_connected_to_server"]
+[connection signal="connection_closed" from="WebSocketClient" to="." method="_on_websocket_client_connection_close"]
+[connection signal="message_received" from="WebSocketClient" to="." method="_on_websocket_message_received"]
+[connection signal="item_activated" from="LobbyUI/Join/SessionList/ScrollContainer/Panel/ItemList" to="." method="_on_click_join_session"]
+[connection signal="pressed" from="LobbyUI/Join/SessionList/ButtonRefresh" to="." method="get_game_list"]
+[connection signal="pressed" from="LobbyUI/Select/Panel/Host" to="." method="test_host"]
+[connection signal="pressed" from="LobbyUI/Select/Panel/Join" to="." method="get_game_list"]
+
+[editable path="LobbyUI"]
