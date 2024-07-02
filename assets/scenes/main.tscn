@@ -7,3 +7,4 @@
 [node name="Lobby" parent="." instance=ExtResource("1_is335")]
 
 [editable path="Lobby"]
+[editable path="Lobby/LobbyUI"]

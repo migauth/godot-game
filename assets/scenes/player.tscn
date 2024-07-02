@@ -18,6 +18,7 @@ shape = SubResource("CircleShape2D_hxvuv")
 polygon = PackedVector2Array(-2, -2, 0, 3, 2, -2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-visible = false
 sprite_frames = ExtResource("2_xnmvu")
 animation = &"idle"
+frame = 6
+frame_progress = 0.282494
